@@ -88,7 +88,6 @@ assets/
 
 - This repository is provided for educational use as a college project. No warranties.
 - External images are from Wikimedia Commons and may carry their own licenses; check each source link before reuse.
-- Do not use this project, name, or branding for commercial purposes.
 
 ---
 Made by Anirudh Kosgi — Academic Presentation
