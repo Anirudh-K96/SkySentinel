@@ -219,7 +219,7 @@ function initScrollSpy() {
   if (!('IntersectionObserver' in window)) return;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
         slides.forEach((s, i) => {
           if (s === entry.target) {
             links.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
@@ -230,8 +230,13 @@ function initScrollSpy() {
         });
       }
     });
-  }, { threshold: [0.6] });
+  }, { threshold: [0.35], rootMargin: '-64px 0px -40% 0px' });
   slides.forEach(s => observer.observe(s));
+  // Ensure the current slide is visible on scroll (mobile safety net)
+  addScrollUpdate(() => {
+    const idx = getCurrentSlideIndex();
+    if (slides[idx]) slides[idx].classList.add('is-visible');
+  });
 }
 
 function initSlideCounter() {

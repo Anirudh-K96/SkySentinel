@@ -274,6 +274,10 @@ body::after {
 .slide { opacity: 0; transform: translateY(14px); transition: opacity 260ms ease, transform 260ms ease, background 600ms ease; }
 .slide.is-visible { opacity: 1; transform: translateY(0); background-image: radial-gradient(800px 400px at 70% 10%, rgba(124,92,255,0.06), transparent 60%), radial-gradient(600px 300px at 10% 90%, rgba(34,227,255,0.05), transparent 60%); }
 
+@media (max-width: 720px) {
+  .slide { opacity: 1; transform: none; }
+}
+
 /* Print (Export Handout) */
 @media print {
   @page { size: A4; margin: 12mm; }
