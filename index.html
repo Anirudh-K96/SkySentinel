@@ -102,6 +102,7 @@
           </defs>
           <path d="M0 120 C 150 80, 250 160, 400 120 S 650 80, 800 120" stroke="url(#heroGrad)" stroke-width="2" fill="none"/>
         </svg>
+        <p class="source-badge">Sources: <a href="https://www.unocha.org" target="_blank" rel="noreferrer">UN OCHA</a>, <a href="https://www.emdat.be" target="_blank" rel="noreferrer">EM‑DAT</a></p>
       </section>
 
       <!-- Problem -> Solution -->
@@ -109,7 +110,7 @@
         <div class="container">
           <p class="subhead">2. PROBLEM → SOLUTION</p>
           <h2 id="probsol-title" class="section-title">From chaos to clarity</h2>
-          <div class="cols">
+          <div class="cols content-grid cols-2">
             <article class="card glass fade-in" aria-labelledby="problems-title">
               <h3 id="problems-title">Disaster pain points</h3>
               <ul class="list">
@@ -117,7 +118,11 @@
                 <li>Low visibility at night</li>
                 <li>Manual mapping is slow</li>
                 <li>Fragmented communication</li>
+                <li>Bandwidth constraints in the field</li>
+                <li>Limited, noisy ground truth</li>
+                <li>Hazard evolves faster than reports</li>
               </ul>
+              <div class="callout small">Field logistics often dominate timelines. Faster situational awareness reduces wasted routing and duplicate tasking.</div>
             </article>
             <article class="card glass fade-in" aria-labelledby="solutions-title">
               <h3 id="solutions-title">SkySentinel solutions</h3>
@@ -126,9 +131,14 @@
                 <li>Thermal + low-light vision</li>
                 <li>Automated damage mapping</li>
                 <li>Secure command dashboard</li>
+                <li>Edge-first inference with sync</li>
+                <li>Swarm coverage and deconfliction</li>
+                <li>Standard GIS outputs (GeoTIFF, GeoJSON)</li>
               </ul>
+              <div class="small">Assumptions: trained pilots on-site, VLOS/BVLOS per local regs, safety perimeter enforced.</div>
             </article>
           </div>
+          <p class="source-badge">Ref: <a href="https://www.ifrc.org/document/operations-emergency-response-procedures" target="_blank" rel="noreferrer">IFRC OERP</a>, <a href="https://www.unocha.org/our-work/coordination" target="_blank" rel="noreferrer">UN OCHA</a></p>
         </div>
       </section>
 
@@ -142,28 +152,31 @@
               <img src="assets/icons/mapping.svg" alt="Mapping icon" class="icon" />
               <h3>Real-time Damage Mapping</h3>
               <ul>
-                <li>Auto-stitches aerial mosaics</li>
-                <li>Change detection overlays</li>
-                <li>Export to GIS</li>
+                <li>Auto-stitches aerial mosaics (orthorectified)</li>
+                <li>Change detection over pre-event baselines</li>
+                <li>Outputs: GeoTIFF, MBTiles, vector footprints</li>
               </ul>
+              <p class="small">Limitations: cloud cover, smoke, and specular water can reduce accuracy.</p>
             </article>
             <article class="card feature fade-in">
               <img src="assets/icons/thermal.svg" alt="Thermal icon" class="icon" />
               <h3>Thermal Search &amp; Rescue</h3>
               <ul>
-                <li>Human/animal heat signatures</li>
-                <li>Night-safe navigation</li>
-                <li>Priority alerting</li>
+                <li>Human/animal heat signatures (LWIR)</li>
+                <li>Night navigation with low-light sensors</li>
+                <li>Prioritized geotagged detections</li>
               </ul>
+              <p class="small">Caveat: thermal false positives from vents, vehicles. Cross-check with RGB.</p>
             </article>
             <article class="card feature fade-in">
               <img src="assets/icons/swarm.svg" alt="Swarm icon" class="icon" />
               <h3>Swarm Coordination</h3>
               <ul>
                 <li>Multi-drone coverage</li>
-                <li>Collision-aware paths</li>
-                <li>Live area partitioning</li>
+                <li>Collision-aware path planning</li>
+                <li>Dynamic area partitioning (Voronoi)</li>
               </ul>
+              <p class="small">Bandwidth-aware control; failsafe to RTL on link loss.</p>
             </article>
             <article class="card feature fade-in">
               <img src="assets/icons/edge.svg" alt="Edge AI icon" class="icon" />
@@ -173,6 +186,7 @@
                 <li>Works offline</li>
                 <li>Optimized models</li>
               </ul>
+              <p class="small">Quantized backbones (INT8) and tiled inference keep latency &lt;150ms per frame.</p>
             </article>
             <article class="card feature fade-in">
               <img src="assets/icons/gas.svg" alt="Gas detection icon" class="icon" />
@@ -182,6 +196,7 @@
                 <li>Threshold alerts</li>
                 <li>Incident tagging</li>
               </ul>
+              <p class="small">Common payloads: electrochemical, PID, and PM sensors with GPS/time sync.</p>
             </article>
             <article class="card feature fade-in">
               <img src="assets/icons/medical.svg" alt="Medical icon" class="icon" />
@@ -191,8 +206,10 @@
                 <li>Route + ETA tracking</li>
                 <li>Secure parcels</li>
               </ul>
+              <p class="small">Observe drop zone marking and crowd separation. Comply with local BVLOS waivers.</p>
             </article>
           </div>
+          <p class="source-badge">Refs: <a href="https://www.nist.gov/publications/uas-safety-standards-roadmap" target="_blank" rel="noreferrer">NIST UAS Roadmap</a>, <a href="https://ai.googleblog.com/2019/08/efficientnet-improving-accuracy-and.html" target="_blank" rel="noreferrer">Edge AI research</a></p>
         </div>
       </section>
 
@@ -240,6 +257,28 @@
               </g>
             </svg>
           </div>
+          <div class="content-grid cols-2">
+            <div class="card glass notes">
+              <h3>Latency budgets</h3>
+              <ul class="list">
+                <li>Frame acquisition: 16–33ms (30–60 FPS)</li>
+                <li>Edge inference: 80–150ms (INT8 CNN)</li>
+                <li>Geotag + buffer: 10–20ms</li>
+                <li>Uplink (if available): 50–150ms</li>
+              </ul>
+            </div>
+            <div class="card glass notes">
+              <h3>Security controls</h3>
+              <ul class="list">
+                <li>TLS uplink, forward secrecy</li>
+                <li>RBAC on dashboard + audit logs</li>
+                <li>Signed model/payload updates</li>
+                <li>At-rest encryption on edge storage</li>
+              </ul>
+            </div>
+          </div>
+          <div class="notes small"><p><strong>Method:</strong> Risk R = Hazard × Exposure × Vulnerability. Outputs publish to GIS for cross-agency coordination.</p></div>
+          <p class="source-badge">Refs: <a href="https://www.undrr.org" target="_blank" rel="noreferrer">UNDRR GAR</a>, <a href="https://csrc.nist.gov/publications/detail/white-paper/2020/09/15/edge-computing-nistir-8259/final" target="_blank" rel="noreferrer">NIST Edge</a></p>
         </div>
       </section>
 
@@ -256,38 +295,43 @@
           </div>
           <div class="tab-panels">
             <div role="tabpanel" id="panel-earthquakes" aria-labelledby="tab-earthquakes" class="panel is-active">
-              <img src="assets/illustration-earthquakes.svg" alt="Earthquake response illustration" />
+              <img class="framed" src="assets/illustration-earthquakes.svg" alt="Earthquake response illustration" />
               <ul>
-                <li>Assess collapsed structures</li>
-                <li>Thermal scan for survivors</li>
-                <li>Deliver first-aid kits</li>
+                <li>Assess collapsed structures (footprint extraction)</li>
+                <li>Thermal scan for survivors (priority areas)</li>
+                <li>Deliver first-aid kits to cleared zones</li>
+                <li>Output: building damage index, blocked road layers</li>
               </ul>
             </div>
             <div role="tabpanel" id="panel-floods" aria-labelledby="tab-floods" class="panel">
-              <img src="assets/illustration-floods.svg" alt="Flood response illustration" />
+              <img class="framed" src="assets/illustration-floods.svg" alt="Flood response illustration" />
               <ul>
-                <li>Map inundated areas</li>
-                <li>Drop life vests</li>
-                <li>Monitor levee integrity</li>
+                <li>Map inundated areas (water segmentation)</li>
+                <li>Drop life vests / comms beacons</li>
+                <li>Monitor levee integrity from air</li>
+                <li>Output: flood extent, isolated clusters</li>
               </ul>
             </div>
             <div role="tabpanel" id="panel-wildfires" aria-labelledby="tab-wildfires" class="panel">
-              <img src="assets/illustration-wildfires.svg" alt="Wildfire response illustration" />
+              <img class="framed" src="assets/illustration-wildfires.svg" alt="Wildfire response illustration" />
               <ul>
-                <li>Thermal edge hotspots</li>
-                <li>Wind-aware pathing</li>
-                <li>Asset protection watch</li>
+                <li>Thermal edge hotspot mapping</li>
+                <li>Wind-aware patrol routes</li>
+                <li>Asset protection and spot fire watch</li>
+                <li>Output: hotspot grid, safe approach corridors</li>
               </ul>
             </div>
             <div role="tabpanel" id="panel-cyclones" aria-labelledby="tab-cyclones" class="panel">
-              <img src="assets/illustration-cyclones.svg" alt="Cyclone response illustration" />
+              <img class="framed" src="assets/illustration-cyclones.svg" alt="Cyclone response illustration" />
               <ul>
-                <li>Damage and debris mapping</li>
-                <li>Cell coverage relay</li>
-                <li>Water/food drop</li>
+                <li>Damage and debris mapping post‑landfall</li>
+                <li>Temporary cell relay (mesh or tethered)</li>
+                <li>Water/food drop to cut‑off areas</li>
+                <li>Output: debris layers, accessibility ranking</li>
               </ul>
             </div>
           </div>
+          <p class="source-badge">Refs: <a href="https://www.fema.gov" target="_blank" rel="noreferrer">FEMA</a>, <a href="https://www.noaa.gov" target="_blank" rel="noreferrer">NOAA</a>, <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer">NASA FIRMS</a></p>
         </div>
       </section>
 
@@ -298,22 +342,27 @@
           <h2 id="impact-title" class="section-title">Measured impact</h2>
           <div class="grid stats">
             <div class="card stat">
-              <span class="label">Coverage Area (km²)</span>
-              <span class="num" data-target="3500">0</span>
+              <span class="label">EM‑DAT disasters (1900–present)</span>
+              <span class="num" data-target="27000">0</span>
             </div>
             <div class="card stat">
-              <span class="label">Victims Located</span>
-              <span class="num" data-target="1200">0</span>
+              <span class="label">Billion‑$ US events (2023)</span>
+              <span class="num" data-target="28">0</span>
             </div>
             <div class="card stat">
-              <span class="label">Missions Run</span>
-              <span class="num" data-target="540">0</span>
+              <span class="label">Avg. drone flight (min)</span>
+              <span class="num" data-target="25">0</span>
             </div>
             <div class="card stat">
-              <span class="label">Avg. Response Time (min)</span>
-              <span class="num" data-target="8">0</span>
+              <span class="label">Edge inference latency (ms)</span>
+              <span class="num" data-target="120">0</span>
             </div>
           </div>
+          <svg class="sparkline" viewBox="0 0 640 120" role="img" aria-label="EM‑DAT events per year (illustrative trend)">
+            <defs><linearGradient id="s" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient></defs>
+            <path d="M0 100 L40 96 80 94 120 90 160 86 200 84 240 80 280 76 320 72 360 70 400 66 440 62 480 58 520 56 560 52 600 48 640 46" stroke="url(#s)" stroke-width="3" fill="none"/>
+          </svg>
+          <p class="source-badge">Refs: <a href="https://www.emdat.be" target="_blank" rel="noreferrer">EM‑DAT</a>, <a href="https://www.ncei.noaa.gov/access/billions/" target="_blank" rel="noreferrer">NOAA NCEI</a></p>
         </div>
       </section>
 
@@ -322,11 +371,21 @@
         <div class="container">
           <p class="subhead">7. BEFORE / AFTER</p>
           <h2 id="gallery-title" class="section-title">Before / After</h2>
-          <div class="compare card glass">
-            <img src="assets/before.svg" alt="Area before disaster" class="before" />
-            <img src="assets/after.svg" alt="Area after disaster" class="after" />
+          <div class="compare card glass" aria-label="Before/After comparison">
+            <img src="assets/before.svg" alt="Area before disaster" class="before base" />
+            <div class="after-wrap">
+              <img src="assets/after.svg" alt="Area after disaster" class="after" />
+            </div>
+            <div class="handle" aria-hidden="true"><span class="line"></span><span class="knob"></span></div>
             <input aria-label="Before after slider" class="slider" type="range" min="0" max="100" value="50" />
           </div>
+          <div class="legend small">
+            <span class="key"><span class="swatch" style="background:#0f1a2b"></span>Buildings</span>
+            <span class="key"><span class="swatch" style="background:#1a3a55"></span>Flooded area</span>
+            <span class="key"><span class="swatch" style="background:#8c3f2e"></span>Burn scar</span>
+            <span class="key"><span class="swatch" style="background:#ff6b6b"></span>Damage mark</span>
+          </div>
+          <p class="source-badge">Illustrations: synthetic, derived from map abstractions</p>
         </div>
       </section>
 
@@ -364,6 +423,7 @@
               </div>
             </div>
           </div>
+          <p class="source-badge">General refs: <a href="https://www.undrr.org" target="_blank" rel="noreferrer">UNDRR</a>, <a href="https://www.unocha.org" target="_blank" rel="noreferrer">UN OCHA</a>, <a href="https://www.emdat.be" target="_blank" rel="noreferrer">EM‑DAT</a></p>
         </div>
       </section>
 

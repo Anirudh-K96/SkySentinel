@@ -13,9 +13,26 @@ function initMobileMenu() {
   const toggle = document.getElementById('tocToggle');
   const sidebar = document.getElementById('sidebar');
   if (!toggle || !sidebar) return;
-  toggle.addEventListener('click', () => {
-    const open = sidebar.classList.toggle('open');
+  const setState = (open) => {
+    sidebar.classList.toggle('open', open);
+    document.body.classList.toggle('sidebar-open', open);
     toggle.setAttribute('aria-expanded', String(open));
+    sidebar.setAttribute('aria-hidden', String(!open));
+  };
+  toggle.addEventListener('click', () => {
+    const willOpen = !sidebar.classList.contains('open');
+    setState(willOpen);
+  });
+  // Close on link click for small screens
+  sidebar.addEventListener('click', (e) => {
+    if (e.target.closest('a') && window.innerWidth < 1024) setState(false);
+  });
+  // Default open on desktop
+  const desktop = window.innerWidth >= 1024;
+  setState(desktop);
+  window.addEventListener('resize', () => {
+    const isDesktop = window.innerWidth >= 1024;
+    if (isDesktop !== document.body.classList.contains('sidebar-open')) setState(isDesktop);
   });
 }
 
@@ -94,10 +111,12 @@ function initCompareSlider() {
   const compare = document.querySelector('.compare');
   if (!compare) return;
   const slider = compare.querySelector('.slider');
-  const after = compare.querySelector('.after');
+  const wrap = compare.querySelector('.after-wrap');
+  const handle = compare.querySelector('.handle');
   function setFromValue(val) {
     const pct = Math.max(0, Math.min(100, Number(val)));
-    after.style.width = pct + '%';
+    wrap.style.width = pct + '%';
+    handle.style.left = pct + '%';
   }
   setFromValue(slider.value);
   slider.addEventListener('input', (e) => setFromValue(e.target.value));
@@ -202,7 +221,20 @@ function initProgressBar() {
 function initBackToTop() {
   const btn = document.getElementById('backTop');
   if (!btn) return;
+  const main = document.getElementById('main');
+  const getScrollTop = () => {
+    return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  };
+  const update = () => {
+    const atTop = getScrollTop() <= 4;
+    btn.classList.toggle('is-hidden', atTop);
+    btn.setAttribute('aria-hidden', String(atTop));
+  };
   btn.addEventListener('click', () => scrollToSectionByIndex(0));
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (main) main.addEventListener('scroll', update, { passive: true });
+  update();
 }
 
 function initExport() {

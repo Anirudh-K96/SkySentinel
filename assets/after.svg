@@ -1,17 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="After disaster placeholder image">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="After disaster aerial map with damage">
   <defs>
     <linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient>
   </defs>
   <rect width="100%" height="100%" fill="#0b1220"/>
-  <g stroke="url(#g)" fill="none">
-    <polyline points="40,320 90,300 140,330 190,300 240,330 290,300 340,330 390,300 440,330 490,300 540,330 590,300 640,330 690,300 740,320"/>
-    <g opacity="0.85">
-      <path d="M90 270l30 40M120 270l-30 40"/>
-      <path d="M180 260l30 50M210 260l-30 50"/>
-      <path d="M320 250l40 60M360 250l-40 60"/>
-      <path d="M480 260l30 50M510 260l-30 50"/>
-      <path d="M650 270l30 40M680 270l-30 40"/>
-    </g>
+  <!-- Roads grid -->
+  <g stroke="#223148" stroke-width="2">
+    <path d="M0 100h800M0 200h800M0 300h800"/>
+    <path d="M160 0v450M320 0v450M480 0v450M640 0v450"/>
+  </g>
+  <!-- Flooded area overlay -->
+  <rect x="0" y="200" width="800" height="100" fill="#1a3a55" fill-opacity="0.45"/>
+  <!-- Burn scar overlay -->
+  <path d="M340 120c40 10 60 30 60 50s-20 40-60 50c-20-20-30-40-30-50s10-30 30-50z" fill="#8c3f2e" fill-opacity="0.35"/>
+  <!-- Buildings with damage marks -->
+  <g fill="#0f1a2b" stroke="url(#g)">
+    <rect x="40" y="120" width="90" height="60" rx="4"/>
+    <rect x="210" y="120" width="90" height="60" rx="4"/>
+    <rect x="370" y="120" width="100" height="60" rx="4"/>
+    <rect x="530" y="120" width="90" height="60" rx="4"/>
+    <rect x="690" y="120" width="70" height="60" rx="4"/>
+    <rect x="40" y="220" width="100" height="70" rx="4"/>
+    <rect x="210" y="220" width="90" height="70" rx="4"/>
+    <rect x="370" y="220" width="110" height="70" rx="4"/>
+    <rect x="540" y="220" width="90" height="70" rx="4"/>
+    <rect x="690" y="220" width="70" height="70" rx="4"/>
+  </g>
+  <g stroke="#ff6b6b" stroke-width="3">
+    <path d="M385 130l20 20M405 130l-20 20"/>
+    <path d="M555 230l20 20M575 230l-20 20"/>
   </g>
 </svg>
-

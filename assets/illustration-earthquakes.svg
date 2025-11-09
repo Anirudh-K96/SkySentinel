@@ -1,12 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-label="Earthquake illustration placeholder">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-label="Earthquake response illustration">
   <defs>
     <linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1220"/><stop offset="100%" stop-color="#0f1a2b"/></linearGradient>
   </defs>
-  <rect width="100%" height="100%" fill="#0b1220"/>
+  <rect width="100%" height="100%" fill="url(#sky)"/>
+  <!-- Ground -->
+  <rect x="0" y="220" width="560" height="80" fill="#0f1a2b"/>
+  <!-- Collapsed building -->
   <g stroke="url(#g)" stroke-width="2" fill="none">
-    <polyline points="20,220 100,200 150,210 210,180 280,190 340,160 420,170 520,150"/>
-    <rect x="90" y="120" width="60" height="60" rx="6"/>
-    <path d="M90 180l30 20 30-20"/>
+    <rect x="80" y="120" width="90" height="80" rx="4"/>
+    <path d="M80 160l90 0"/>
+    <path d="M90 120l30 30M110 120l-20 20"/>
+    <path d="M95 200l30-14 28 10-8-22 24-10"/>
+  </g>
+  <!-- Crack -->
+  <path d="M260 220l6-18 10 12 8-20 12 16 6-16 10 22" stroke="url(#g)" stroke-width="2" fill="none"/>
+  <!-- Drone -->
+  <g stroke="url(#g)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="440" cy="120" r="18"/>
+    <path d="M420 100h-20M460 100h20"/>
+    <path d="M440 138v18"/>
   </g>
 </svg>
-
