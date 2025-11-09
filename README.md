@@ -1,4 +1,4 @@
-# SkySentinel — Academic Presentation Site
+# StratoRelief — Academic Presentation Site
 
 A single‑page, scroll‑snap “presentation” website showcasing how AI‑powered drones could support disaster management. Built with semantic HTML5, modern CSS, and vanilla JavaScript. This is a mock demo for learning purposes — not a commercial product.
 

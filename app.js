@@ -1,4 +1,4 @@
-// SkySentinel Demo App
+// StratoRelief Demo App
 // All interactions are client-side and offline-friendly.
 
 // Respect reduced motion
