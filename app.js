@@ -5,37 +5,17 @@
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function initLenis() {
-  if (prefersReduced) return; // Avoid heavy smoothing
-  if (!window.Lenis) return;
-  const lenis = new Lenis({
-    smoothWheel: true,
-    lerp: 0.12,
-    wheelMultiplier: 0.9,
-  });
-  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+  // Disabled to preserve CSS scroll-snap behavior in presentation mode
+  return;
 }
 
 function initMobileMenu() {
-  const toggle = document.querySelector('.nav-toggle');
-  const drawer = document.getElementById('mobile-menu');
-  if (!toggle || !drawer) return;
+  const toggle = document.getElementById('tocToggle');
+  const sidebar = document.getElementById('sidebar');
+  if (!toggle || !sidebar) return;
   toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!open));
-    drawer.hidden = false; // ensure it's in the a11y tree
-    drawer.classList.toggle('open', !open);
-    if (open) {
-      // Hide after animation completes for a11y
-      setTimeout(() => { drawer.hidden = true; }, 300);
-    }
-  });
-  drawer.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      toggle.setAttribute('aria-expanded', 'false');
-      drawer.classList.remove('open');
-      setTimeout(() => { drawer.hidden = true; }, 250);
-    }
+    const open = sidebar.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
   });
 }
 
@@ -62,11 +42,8 @@ function initScrollAnims() {
   // Parallax subtle on hero art
   const art = document.querySelector('.hero-art img');
   if (art) {
-    gsap.to(art, {
-      yPercent: 6,
-      ease: 'none',
-      scrollTrigger: { trigger: '.hero', scrub: 0.4 }
-    });
+    // Keep very subtle to avoid heavy parallax
+    gsap.to(art, { yPercent: 3, ease: 'none', scrollTrigger: { trigger: '.hero', scrub: 0.2 } });
   }
 }
 
@@ -127,22 +104,7 @@ function initCompareSlider() {
 }
 
 function initPricingToggle() {
-  const toggle = document.getElementById('priceToggle');
-  if (!toggle) return;
-  const values = document.querySelectorAll('.price .value');
-  function update() {
-    const annual = toggle.checked;
-    values.forEach(v => {
-      const month = v.getAttribute('data-month');
-      const year = v.getAttribute('data-year');
-      const val = annual ? year : month;
-      if (!prefersReduced && window.gsap) {
-        gsap.fromTo(v, { opacity: 0, y: -6 }, { opacity: 1, y: 0, duration: 0.25 });
-      }
-      v.textContent = val;
-    });
-  }
-  toggle.addEventListener('change', update);
+  // Pricing removed in presentation mode
 }
 
 function initFAQ() {
@@ -159,31 +121,93 @@ function initFAQ() {
   });
 }
 
-function initForm() {
-  const form = document.getElementById('leadForm');
-  const status = document.getElementById('formStatus');
-  if (!form || !status) return;
-  function showStatus(msg, ok = true) {
-    status.hidden = false;
-    status.textContent = msg;
-    status.style.color = ok ? 'var(--brand-2)' : '#ff6b6b';
-  }
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const fd = new FormData(form);
-    const name = String(fd.get('name') || '').trim();
-    const email = String(fd.get('email') || '').trim();
-    const usecase = String(fd.get('usecase') || '');
-    const message = String(fd.get('message') || '').trim();
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!name || !emailOk || !usecase || !message) {
-      showStatus('Please complete all required fields with a valid email.', false);
-      return;
-    }
-    // Offline-friendly: no network call. Simulate success.
-    form.reset();
-    showStatus('Message sent. We will reach out soon.');
+// Form removed in presentation mode
+
+function initThemeToggle() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  const root = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored) root.setAttribute('data-theme', stored);
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    if (current === 'light') root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+    localStorage.setItem('theme', current === 'light' ? 'light' : 'dark');
   });
+}
+
+function scrollToSectionByIndex(index) {
+  const slides = Array.from(document.querySelectorAll('.section.slide'));
+  const target = slides[index];
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function getCurrentSlideIndex() {
+  const slides = Array.from(document.querySelectorAll('.section.slide'));
+  const y = window.scrollY + window.innerHeight * 0.5;
+  let idx = 0;
+  slides.forEach((s, i) => { if (s.offsetTop <= y) idx = i; });
+  return idx;
+}
+
+function initNextPrev() {
+  const prev = document.getElementById('prevBtn');
+  const next = document.getElementById('nextBtn');
+  const nextLink = document.getElementById('scrollNext');
+  function go(delta) { scrollToSectionByIndex(getCurrentSlideIndex() + delta); }
+  if (prev) prev.addEventListener('click', () => go(-1));
+  if (next) next.addEventListener('click', () => go(1));
+  if (nextLink) nextLink.addEventListener('click', (e) => { e.preventDefault(); go(1); });
+  document.addEventListener('keydown', (e) => {
+    if (['ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); go(1); }
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(-1); }
+    if (e.key === 'Home') { e.preventDefault(); scrollToSectionByIndex(0); }
+    if (e.key === 'End') { e.preventDefault(); scrollToSectionByIndex(document.querySelectorAll('.section.slide').length - 1); }
+  });
+}
+
+function initScrollSpy() {
+  const links = Array.from(document.querySelectorAll('.sidebar a'));
+  const slides = Array.from(document.querySelectorAll('.section.slide'));
+  if (!('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+        slides.forEach((s, i) => {
+          if (s === entry.target) {
+            links.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
+            const id = '#' + s.id; const link = links.find(l => l.getAttribute('href') === id);
+            if (link) { link.classList.add('active'); link.setAttribute('aria-current', 'true'); }
+            s.classList.add('is-visible');
+          }
+        });
+      }
+    });
+  }, { threshold: [0.6] });
+  slides.forEach(s => observer.observe(s));
+}
+
+function initProgressBar() {
+  const bar = document.querySelector('#progressBar span');
+  if (!bar) return;
+  function update() {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+    bar.style.width = Math.max(0, Math.min(1, scrolled)) * 100 + '%';
+  }
+  document.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+function initBackToTop() {
+  const btn = document.getElementById('backTop');
+  if (!btn) return;
+  btn.addEventListener('click', () => scrollToSectionByIndex(0));
+}
+
+function initExport() {
+  const btns = [document.getElementById('exportBtn'), document.getElementById('footerExport')].filter(Boolean);
+  btns.forEach(b => b.addEventListener('click', () => window.print()));
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -196,6 +220,10 @@ window.addEventListener('DOMContentLoaded', () => {
   initCompareSlider();
   initPricingToggle();
   initFAQ();
-  initForm();
+  initThemeToggle();
+  initNextPrev();
+  initScrollSpy();
+  initProgressBar();
+  initBackToTop();
+  initExport();
 });
-

@@ -28,6 +28,7 @@
     <!-- Libraries (GSAP + ScrollTrigger, Lenis) -->
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- Lenis kept but disabled for snap presentation -->
     <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
     <!-- App -->
@@ -41,42 +42,41 @@
           <img src="assets/logo.svg" alt="SkySentinel logo" width="28" height="28" />
           <span>SkySentinel</span>
         </a>
-        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span class="bar" aria-hidden="true"></span>
-          <span class="bar" aria-hidden="true"></span>
-          <span class="bar" aria-hidden="true"></span>
-        </button>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#solutions">Solutions</a></li>
-          <li><a href="#tech">Tech</a></li>
-          <li><a href="#use-cases">Use Cases</a></li>
-          <li><a href="#impact">Impact</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a class="btn btn-small" href="#contact">Contact</a></li>
-        </ul>
-        <div id="mobile-menu" class="mobile-drawer" hidden>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#tech">Tech</a></li>
-            <li><a href="#use-cases">Use Cases</a></li>
-            <li><a href="#impact">Impact</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a class="btn btn-small" href="#contact">Contact</a></li>
-          </ul>
+        <div class="nav-actions">
+          <button id="tocToggle" class="nav-toggle" aria-label="Toggle table of contents" aria-expanded="false" aria-controls="sidebar">
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+          </button>
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle light/dark">
+            ☾
+          </button>
+          <button id="exportBtn" class="btn btn-small" aria-label="Export handout as PDF">Export Handout (PDF)</button>
         </div>
       </nav>
+      <div id="progressBar" class="progress-bar" aria-hidden="true"><span></span></div>
     </header>
 
-    <main id="main" class="site-main">
+    <aside id="sidebar" class="sidebar" aria-label="Table of contents">
+      <ol>
+        <li><a href="#home">1. Introduction</a></li>
+        <li><a href="#solutions">2. Problem → Solution</a></li>
+        <li><a href="#features">3. AI Capabilities</a></li>
+        <li><a href="#tech">4. How It Works</a></li>
+        <li><a href="#use-cases">5. Use Cases</a></li>
+        <li><a href="#impact">6. Impact</a></li>
+        <li><a href="#gallery">7. Before / After</a></li>
+        <li><a href="#faq">8. FAQ</a></li>
+      </ol>
+    </aside>
+
+    <main id="main" class="site-main presentation" tabindex="-1">
       <!-- Hero -->
-      <section id="home" class="section hero" aria-labelledby="hero-title">
+      <section id="home" class="section hero slide" data-slide="1" aria-labelledby="hero-title">
         <div class="hero-bg" aria-hidden="true"></div>
         <div class="container hero-inner">
           <div class="hero-copy">
+            <p class="subhead">1. INTRODUCTION</p>
             <h1 id="hero-title" class="headline">
               AI-Powered Drones. Faster Relief. Safer Response.
             </h1>
@@ -84,8 +84,7 @@
               We combine edge AI, computer vision, and autonomous flight to cut response times and save lives.
             </p>
             <div class="actions">
-              <a class="btn" href="#contact">Get a Demo</a>
-              <a class="btn btn-ghost" href="assets/brochure.pdf" download aria-label="Download brochure PDF">Download Brochure (PDF)</a>
+              <a class="btn btn-ghost" href="#" id="scrollNext">Next</a>
             </div>
             <ul class="kpi-chips" aria-label="Key performance indicators">
               <li><span class="chip">&lt;5min deploy</span></li>
@@ -97,11 +96,18 @@
             <img src="assets/illustration-drone.svg" alt="Stylized drone illustration" />
           </div>
         </div>
+        <svg class="hero-lines" viewBox="0 0 800 200" aria-hidden="true">
+          <defs>
+            <linearGradient id="heroGrad" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient>
+          </defs>
+          <path d="M0 120 C 150 80, 250 160, 400 120 S 650 80, 800 120" stroke="url(#heroGrad)" stroke-width="2" fill="none"/>
+        </svg>
       </section>
 
       <!-- Problem -> Solution -->
-      <section id="solutions" class="section two-col" aria-labelledby="probsol-title">
+      <section id="solutions" class="section two-col slide" data-slide="2" aria-labelledby="probsol-title">
         <div class="container">
+          <p class="subhead">2. PROBLEM → SOLUTION</p>
           <h2 id="probsol-title" class="section-title">From chaos to clarity</h2>
           <div class="cols">
             <article class="card glass fade-in" aria-labelledby="problems-title">
@@ -127,8 +133,9 @@
       </section>
 
       <!-- Features -->
-      <section class="section features" aria-labelledby="features-title">
+      <section id="features" class="section features slide" data-slide="3" aria-labelledby="features-title">
         <div class="container">
+          <p class="subhead">3. AI CAPABILITIES</p>
           <h2 id="features-title" class="section-title">AI capabilities</h2>
           <div class="grid features-grid">
             <article class="card feature fade-in">
@@ -190,8 +197,9 @@
       </section>
 
       <!-- Tech / How it works -->
-      <section id="tech" class="section tech" aria-labelledby="tech-title">
+      <section id="tech" class="section tech slide" data-slide="4" aria-labelledby="tech-title">
         <div class="container">
+          <p class="subhead">4. HOW IT WORKS</p>
           <h2 id="tech-title" class="section-title">How it works</h2>
           <ol class="flow">
             <li><span class="step">1</span> Deploy</li>
@@ -236,8 +244,9 @@
       </section>
 
       <!-- Use-Case Tabs -->
-      <section id="use-cases" class="section tabs" aria-labelledby="tabs-title">
+      <section id="use-cases" class="section tabs slide" data-slide="5" aria-labelledby="tabs-title">
         <div class="container">
+          <p class="subhead">5. SCENARIOS</p>
           <h2 id="tabs-title" class="section-title">Use cases</h2>
           <div class="tablist" role="tablist" aria-label="Disaster scenarios">
             <button role="tab" aria-selected="true" aria-controls="panel-earthquakes" id="tab-earthquakes" class="tab">Earthquakes</button>
@@ -283,8 +292,9 @@
       </section>
 
       <!-- Impact / Stats -->
-      <section id="impact" class="section impact" aria-labelledby="impact-title">
+      <section id="impact" class="section impact slide" data-slide="6" aria-labelledby="impact-title">
         <div class="container">
+          <p class="subhead">6. IMPACT</p>
           <h2 id="impact-title" class="section-title">Measured impact</h2>
           <div class="grid stats">
             <div class="card stat">
@@ -308,8 +318,9 @@
       </section>
 
       <!-- Before / After Gallery -->
-      <section class="section gallery" aria-labelledby="gallery-title">
+      <section id="gallery" class="section gallery slide" data-slide="7" aria-labelledby="gallery-title">
         <div class="container">
+          <p class="subhead">7. BEFORE / AFTER</p>
           <h2 id="gallery-title" class="section-title">Before / After</h2>
           <div class="compare card glass">
             <img src="assets/before.svg" alt="Area before disaster" class="before" />
@@ -320,57 +331,12 @@
       </section>
 
       <!-- Pricing -->
-      <section id="pricing" class="section pricing" aria-labelledby="pricing-title">
-        <div class="container">
-          <div class="pricing-header">
-            <h2 id="pricing-title" class="section-title">Pricing</h2>
-            <div class="toggle">
-              <span>Monthly</span>
-              <label class="switch">
-                <input id="priceToggle" type="checkbox" aria-label="Toggle billing annually" />
-                <span class="slider-switch" aria-hidden="true"></span>
-              </label>
-              <span>Annual</span>
-            </div>
-          </div>
-          <div class="grid pricing-grid">
-            <article class="card price">
-              <h3>Starter</h3>
-              <p class="price-amount"><span class="currency">$</span><span class="value" data-month="299" data-year="249">299</span><span class="period">/mo</span></p>
-              <ul class="list">
-                <li>Single drone</li>
-                <li>Basic dashboard</li>
-                <li>Email support</li>
-              </ul>
-              <button class="btn btn-block">Choose Starter</button>
-            </article>
-            <article class="card price featured">
-              <h3>Response</h3>
-              <p class="price-amount"><span class="currency">$</span><span class="value" data-month="799" data-year="679">799</span><span class="period">/mo</span></p>
-              <ul class="list">
-                <li>3–5 drones</li>
-                <li>Thermal + mapping</li>
-                <li>Priority support</li>
-              </ul>
-              <button class="btn btn-block">Choose Response</button>
-            </article>
-            <article class="card price">
-              <h3>Enterprise</h3>
-              <p class="price-amount"><span class="currency">$</span><span class="value" data-month="1999" data-year="1699">1999</span><span class="period">/mo</span></p>
-              <ul class="list">
-                <li>Fleet + swarms</li>
-                <li>Edge + cloud AI</li>
-                <li>24/7 hotline</li>
-              </ul>
-              <button class="btn btn-block">Contact Sales</button>
-            </article>
-          </div>
-        </div>
-      </section>
+      <!-- Removed pricing for academic presentation (no marketing) -->
 
       <!-- FAQ -->
-      <section id="faq" class="section faq" aria-labelledby="faq-title">
+      <section id="faq" class="section faq slide" data-slide="8" aria-labelledby="faq-title">
         <div class="container">
+          <p class="subhead">8. NOTES &amp; FAQ</p>
           <h2 id="faq-title" class="section-title">FAQ</h2>
           <div class="accordion" role="region" aria-labelledby="faq-title">
             <div class="item">
@@ -401,46 +367,7 @@
         </div>
       </section>
 
-      <!-- Contact -->
-      <section id="contact" class="section contact" aria-labelledby="contact-title">
-        <div class="container">
-          <h2 id="contact-title" class="section-title">Contact</h2>
-          <form id="leadForm" novalidate class="card glass">
-            <div class="grid form-grid">
-              <label>
-                <span>Name</span>
-                <input type="text" name="name" required autocomplete="name" />
-              </label>
-              <label>
-                <span>Email</span>
-                <input type="email" name="email" required autocomplete="email" />
-              </label>
-              <label>
-                <span>Organization</span>
-                <input type="text" name="org" autocomplete="organization" />
-              </label>
-              <label>
-                <span>Use case</span>
-                <select name="usecase" required>
-                  <option value="" disabled selected>Select one</option>
-                  <option>Earthquakes</option>
-                  <option>Floods</option>
-                  <option>Wildfires</option>
-                  <option>Cyclones</option>
-                </select>
-              </label>
-              <label class="full">
-                <span>Message</span>
-                <textarea name="message" rows="4" required></textarea>
-              </label>
-            </div>
-            <div class="form-actions">
-              <button class="btn" type="submit">Send</button>
-              <p id="formStatus" role="status" aria-live="polite" class="form-status" hidden>Message sent. We will reach out soon.</p>
-            </div>
-          </form>
-        </div>
-      </section>
+      <!-- Removed contact form for academic presentation mode -->
     </main>
 
     <footer class="site-footer" role="contentinfo">
@@ -450,11 +377,10 @@
           <span>SkySentinel</span>
         </div>
         <ul class="footer-links">
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
           <li><a href="#home">Back to top</a></li>
+          <li><a href="#" id="footerExport">Export Handout (PDF)</a></li>
         </ul>
-        <p class="disclaimer">Mock demo site for educational purposes. No real service is offered.</p>
+        <p class="disclaimer">Made by SkySentinel • Academic Presentation</p>
         <div class="social" aria-label="Social links">
           <a href="#" aria-label="LinkedIn"><img src="assets/icons/social-linkedin.svg" alt="" aria-hidden="true" /></a>
           <a href="#" aria-label="Twitter"><img src="assets/icons/social-twitter.svg" alt="" aria-hidden="true" /></a>
@@ -462,5 +388,9 @@
         </div>
       </div>
     </footer>
+
+    <button class="arrow-nav prev" id="prevBtn" aria-label="Previous section">◀</button>
+    <button class="arrow-nav next" id="nextBtn" aria-label="Next section">▶</button>
+    <button class="back-to-top" id="backTop" aria-label="Back to top">↑</button>
   </body>
   </html>
