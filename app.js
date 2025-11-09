@@ -183,6 +183,15 @@ function initNextPrev() {
     if (e.key === 'Home') { e.preventDefault(); scrollToSectionByIndex(0); }
     if (e.key === 'End') { e.preventDefault(); scrollToSectionByIndex(document.querySelectorAll('.section.slide').length - 1); }
   });
+  const toggleDisabled = () => {
+    const idx = getCurrentSlideIndex();
+    const total = document.querySelectorAll('.section.slide').length;
+    if (prev) prev.toggleAttribute('disabled', idx === 0);
+    if (next) next.toggleAttribute('disabled', idx >= total - 1);
+  };
+  window.addEventListener('scroll', toggleDisabled, { passive: true });
+  window.addEventListener('resize', toggleDisabled);
+  toggleDisabled();
 }
 
 function initScrollSpy() {
@@ -204,6 +213,19 @@ function initScrollSpy() {
     });
   }, { threshold: [0.6] });
   slides.forEach(s => observer.observe(s));
+}
+
+function initSlideCounter() {
+  const el = document.getElementById('slideCounter');
+  if (!el) return;
+  const total = document.querySelectorAll('.section.slide').length;
+  const update = () => {
+    const current = getCurrentSlideIndex() + 1;
+    el.textContent = `${current} / ${total}`;
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 }
 
 function initProgressBar() {
@@ -237,10 +259,7 @@ function initBackToTop() {
   update();
 }
 
-function initExport() {
-  const btns = [document.getElementById('exportBtn'), document.getElementById('footerExport')].filter(Boolean);
-  btns.forEach(b => b.addEventListener('click', () => window.print()));
-}
+// Export removed (no PDF handout triggers)
 
 window.addEventListener('DOMContentLoaded', () => {
   initLenis();
@@ -257,5 +276,6 @@ window.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
   initProgressBar();
   initBackToTop();
-  initExport();
+  initSlideCounter();
+  // export removed
 });

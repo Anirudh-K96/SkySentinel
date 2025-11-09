@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=3" />
 
     <!-- Libraries (GSAP + ScrollTrigger, Lenis) -->
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -32,7 +32,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
     <!-- App -->
-    <script defer src="app.js"></script>
+    <script defer src="app.js?v=3"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -51,7 +51,7 @@
           <button id="themeToggle" class="icon-btn" aria-label="Toggle light/dark">
             ☾
           </button>
-          <button id="exportBtn" class="btn btn-small" aria-label="Export handout as PDF">Export Handout (PDF)</button>
+          
         </div>
       </nav>
       <div id="progressBar" class="progress-bar" aria-hidden="true"><span></span></div>
@@ -74,6 +74,10 @@
       <!-- Hero -->
       <section id="home" class="section hero slide" data-slide="1" aria-labelledby="hero-title">
         <div class="hero-bg" aria-hidden="true"></div>
+        <div class="brand-banner" aria-label="SkySentinel brand">
+          <img src="assets/logo.svg" alt="" aria-hidden="true" width="18" height="18" />
+          <span class="wordmark">SkySentinel</span>
+        </div>
         <div class="container hero-inner">
           <div class="hero-copy">
             <p class="subhead">1. INTRODUCTION</p>
@@ -93,7 +97,7 @@
             </ul>
           </div>
           <div class="hero-art">
-            <img src="assets/illustration-drone.svg" alt="Stylized drone illustration" />
+            <img src="assets/hero-cover.jpg" alt="Camera drone flying against sky" decoding="async" fetchpriority="high" />
           </div>
         </div>
         <svg class="hero-lines" viewBox="0 0 800 200" aria-hidden="true">
@@ -102,7 +106,7 @@
           </defs>
           <path d="M0 120 C 150 80, 250 160, 400 120 S 650 80, 800 120" stroke="url(#heroGrad)" stroke-width="2" fill="none"/>
         </svg>
-        <p class="source-badge">Sources: <a href="https://www.unocha.org" target="_blank" rel="noreferrer">UN OCHA</a>, <a href="https://www.emdat.be" target="_blank" rel="noreferrer">EM‑DAT</a></p>
+        <p class="source-badge">Photo: <a href="https://commons.wikimedia.org/wiki/File:Quadcopter_camera_drone_in_flight.jpg" target="_blank" rel="noreferrer">Wikimedia Commons</a> • Sources: <a href="https://www.unocha.org" target="_blank" rel="noreferrer">UN OCHA</a>, <a href="https://www.emdat.be" target="_blank" rel="noreferrer">EM‑DAT</a></p>
       </section>
 
       <!-- Problem -> Solution -->
@@ -295,7 +299,9 @@
           </div>
           <div class="tab-panels">
             <div role="tabpanel" id="panel-earthquakes" aria-labelledby="tab-earthquakes" class="panel is-active">
-              <img class="framed" src="assets/illustration-earthquakes.svg" alt="Earthquake response illustration" />
+              <div class="media tone">
+                <img src="assets/usecases/earthquakes.jpg" alt="Earthquake damage at Haiti National Palace, 2012" loading="lazy" />
+              </div>
               <ul>
                 <li>Assess collapsed structures (footprint extraction)</li>
                 <li>Thermal scan for survivors (priority areas)</li>
@@ -304,7 +310,9 @@
               </ul>
             </div>
             <div role="tabpanel" id="panel-floods" aria-labelledby="tab-floods" class="panel">
-              <img class="framed" src="assets/illustration-floods.svg" alt="Flood response illustration" />
+              <div class="media tone">
+                <img src="assets/usecases/floods.jpg" alt="Aerial photo of Pakistan 2010 floods" loading="lazy" />
+              </div>
               <ul>
                 <li>Map inundated areas (water segmentation)</li>
                 <li>Drop life vests / comms beacons</li>
@@ -313,7 +321,9 @@
               </ul>
             </div>
             <div role="tabpanel" id="panel-wildfires" aria-labelledby="tab-wildfires" class="panel">
-              <img class="framed" src="assets/illustration-wildfires.svg" alt="Wildfire response illustration" />
+              <div class="media tone">
+                <img src="assets/usecases/wildfires.jpg" alt="Wildfire burnout operations with smokejumpers" loading="lazy" />
+              </div>
               <ul>
                 <li>Thermal edge hotspot mapping</li>
                 <li>Wind-aware patrol routes</li>
@@ -322,7 +332,9 @@
               </ul>
             </div>
             <div role="tabpanel" id="panel-cyclones" aria-labelledby="tab-cyclones" class="panel">
-              <img class="framed" src="assets/illustration-cyclones.svg" alt="Cyclone response illustration" />
+              <div class="media tone">
+                <img src="assets/usecases/cyclones.png" alt="Satellite view of Super Typhoon Haiyan (2013)" loading="lazy" />
+              </div>
               <ul>
                 <li>Damage and debris mapping post‑landfall</li>
                 <li>Temporary cell relay (mesh or tethered)</li>
@@ -331,7 +343,7 @@
               </ul>
             </div>
           </div>
-          <p class="source-badge">Refs: <a href="https://www.fema.gov" target="_blank" rel="noreferrer">FEMA</a>, <a href="https://www.noaa.gov" target="_blank" rel="noreferrer">NOAA</a>, <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer">NASA FIRMS</a></p>
+          <p class="source-badge">Photos: Wikimedia Commons • Refs: <a href="https://www.fema.gov" target="_blank" rel="noreferrer">FEMA</a>, <a href="https://www.noaa.gov" target="_blank" rel="noreferrer">NOAA</a>, <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer">NASA FIRMS</a></p>
         </div>
       </section>
 
@@ -372,20 +384,18 @@
           <p class="subhead">7. BEFORE / AFTER</p>
           <h2 id="gallery-title" class="section-title">Before / After</h2>
           <div class="compare card glass" aria-label="Before/After comparison">
-            <img src="assets/before.svg" alt="Area before disaster" class="before base" />
+            <img src="assets/usecases/cyclones.png" alt="Pre-event satellite view (illustrative)" class="before base" />
             <div class="after-wrap">
-              <img src="assets/after.svg" alt="Area after disaster" class="after" />
+              <img src="assets/usecases/floods.jpg" alt="Post-event inundation (illustrative)" class="after" />
             </div>
             <div class="handle" aria-hidden="true"><span class="line"></span><span class="knob"></span></div>
             <input aria-label="Before after slider" class="slider" type="range" min="0" max="100" value="50" />
           </div>
           <div class="legend small">
-            <span class="key"><span class="swatch" style="background:#0f1a2b"></span>Buildings</span>
-            <span class="key"><span class="swatch" style="background:#1a3a55"></span>Flooded area</span>
-            <span class="key"><span class="swatch" style="background:#8c3f2e"></span>Burn scar</span>
-            <span class="key"><span class="swatch" style="background:#ff6b6b"></span>Damage mark</span>
+            <span class="key">Left: Pre‑event satellite view</span>
+            <span class="key">Right: Post‑event flooding</span>
           </div>
-          <p class="source-badge">Illustrations: synthetic, derived from map abstractions</p>
+          <p class="source-badge">Photos: Wikimedia Commons (illustrative pairing)</p>
         </div>
       </section>
 
@@ -422,6 +432,127 @@
                 <p>Yes. Onboard inference supports detection and mapping without a network. Sync resumes when a link is available.</p>
               </div>
             </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq4" id="faq4-label">What datasets are used for model training?</button>
+              </h3>
+              <div id="faq4" class="acc-panel" role="region" aria-labelledby="faq4-label" hidden>
+                <p>We reference open aerial and satellite datasets for academic prototyping: SpaceNet (building footprints), xBD (pre/post-disaster), Copernicus EMS, and NASA FIRMS. For thermal patterns, synthetic augmentation and controlled field captures are used.</p>
+                <p class="small">Note: This presentation does not redistribute any dataset; it only cites sources for study.</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq5" id="faq5-label">What are the evaluation metrics?</button>
+              </h3>
+              <div id="faq5" class="acc-panel" role="region" aria-labelledby="faq5-label" hidden>
+                <ul class="list">
+                  <li>Damage segmentation: mIoU, F1 at building-level</li>
+                  <li>Thermal detection: precision/recall, P95 latency</li>
+                  <li>Change detection: pixel F1 and footprint accuracy</li>
+                  <li>Operational KPIs: deploy time, coverage per hour</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq6" id="faq6-label">Key limitations and failure modes?</button>
+              </h3>
+              <div id="faq6" class="acc-panel" role="region" aria-labelledby="faq6-label" hidden>
+                <ul class="list">
+                  <li>Thermal FP/FN due to heat sources or occlusions</li>
+                  <li>Smoke, rain, and glare degrading RGB mapping</li>
+                  <li>GNSS multipath impacting georegistration</li>
+                  <li>Bandwidth constraints limiting live uplink</li>
+                </ul>
+                <p class="small">Mitigations: sensor fusion, redundancy, conservative alerting, human-in-the-loop triage.</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq7" id="faq7-label">Safety, ethics, and governance?</button>
+              </h3>
+              <div id="faq7" class="acc-panel" role="region" aria-labelledby="faq7-label" hidden>
+                <ul class="list">
+                  <li>People-first: do no harm; protect privacy</li>
+                  <li>Transparent model behavior and audit logs</li>
+                  <li>Local community consent where applicable</li>
+                  <li>Incident reviews and continuous improvement</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq8" id="faq8-label">Regulatory considerations?</button>
+              </h3>
+              <div id="faq8" class="acc-panel" role="region" aria-labelledby="faq8-label" hidden>
+                <p>Operations must follow national UAS rules (e.g., FAA Part 107 in the US) and mission-specific waivers for BVLOS or night operations. Remote ID, airspace coordination, and geofencing are required where applicable.</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq9" id="faq9-label">Deployment checklist?</button>
+              </h3>
+              <div id="faq9" class="acc-panel" role="region" aria-labelledby="faq9-label" hidden>
+                <ul class="list">
+                  <li>Airspace brief and NOTAM review</li>
+                  <li>Battery/prop/firmware checks</li>
+                  <li>Sensor calibration and storage health</li>
+                  <li>Safety perimeter and crowd control</li>
+                  <li>Data handoff and GIS export validation</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq10" id="faq10-label">Glossary</button>
+              </h3>
+              <div id="faq10" class="acc-panel" role="region" aria-labelledby="faq10-label" hidden>
+                <ul class="list">
+                  <li><strong>BVLOS</strong>: Beyond Visual Line of Sight</li>
+                  <li><strong>RBAC</strong>: Role-Based Access Control</li>
+                  <li><strong>mIoU</strong>: Mean Intersection-over-Union</li>
+                  <li><strong>Orthorectification</strong>: geometrically correcting imagery using elevation</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq11" id="faq11-label">Selected references</button>
+              </h3>
+              <div id="faq11" class="acc-panel" role="region" aria-labelledby="faq11-label" hidden>
+                <ul class="list">
+                  <li>EM‑DAT. The International Disaster Database — <a href="https://www.emdat.be" target="_blank" rel="noreferrer">emdat.be</a></li>
+                  <li>NOAA NCEI Billion‑Dollar Disasters — <a href="https://www.ncei.noaa.gov/access/billions/" target="_blank" rel="noreferrer">ncei.noaa.gov</a></li>
+                  <li>UNDRR Global Assessment Report — <a href="https://www.undrr.org" target="_blank" rel="noreferrer">undrr.org</a></li>
+                  <li>NIST UAS Safety Standards Roadmap — <a href="https://www.nist.gov/publications/uas-safety-standards-roadmap" target="_blank" rel="noreferrer">nist.gov</a></li>
+                  <li>NASA FIRMS active fire data — <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer">firms.modaps.eosdis.nasa.gov</a></li>
+                </ul>
+                <p class="small">These sources are cited for academic context only.</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq12" id="faq12-label">Future directions</button>
+              </h3>
+              <div id="faq12" class="acc-panel" role="region" aria-labelledby="faq12-label" hidden>
+                <ul class="list">
+                  <li>Onboard foundation models for zero-shot detection</li>
+                  <li>Adaptive swarms with decentralized mapping</li>
+                  <li>Integrated satellite + aerial fusion pipelines</li>
+                  <li>Open datasets for thermal SAR benchmarking</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <p class="source-badge">General refs: <a href="https://www.undrr.org" target="_blank" rel="noreferrer">UNDRR</a>, <a href="https://www.unocha.org" target="_blank" rel="noreferrer">UN OCHA</a>, <a href="https://www.emdat.be" target="_blank" rel="noreferrer">EM‑DAT</a></p>
         </div>
@@ -438,9 +569,8 @@
         </div>
         <ul class="footer-links">
           <li><a href="#home">Back to top</a></li>
-          <li><a href="#" id="footerExport">Export Handout (PDF)</a></li>
         </ul>
-        <p class="disclaimer">Made by SkySentinel • Academic Presentation</p>
+        <p class="disclaimer">Made by Anirudh Kosgi</p>
         <div class="social" aria-label="Social links">
           <a href="#" aria-label="LinkedIn"><img src="assets/icons/social-linkedin.svg" alt="" aria-hidden="true" /></a>
           <a href="#" aria-label="Twitter"><img src="assets/icons/social-twitter.svg" alt="" aria-hidden="true" /></a>
@@ -449,6 +579,7 @@
       </div>
     </footer>
 
+    <div id="slideCounter" class="slide-counter" aria-live="polite">1 / 8</div>
     <button class="arrow-nav prev" id="prevBtn" aria-label="Previous section">◀</button>
     <button class="arrow-nav next" id="nextBtn" aria-label="Next section">▶</button>
     <button class="back-to-top" id="backTop" aria-label="Back to top">↑</button>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="Realistic drone in flight">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1222"/>
+      <stop offset="100%" stop-color="#0f1a2b"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" x2="1">
+      <stop offset="0%" stop-color="#cfd8e3"/>
+      <stop offset="100%" stop-color="#8a97ad"/>
+    </linearGradient>
+    <linearGradient id="arm" x1="0" x2="1">
+      <stop offset="0%" stop-color="#9aa7bd"/>
+      <stop offset="100%" stop-color="#6f7c93"/>
+    </linearGradient>
+    <radialGradient id="lens" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22e3ff"/>
+      <stop offset="70%" stop-color="#0a2430"/>
+      <stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+    <filter id="rotorBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  <!-- Ambient horizon light -->
+  <ellipse cx="600" cy="520" rx="520" ry="70" fill="#22e3ff" opacity="0.06"/>
+
+  <!-- Drone shadow -->
+  <ellipse cx="600" cy="500" rx="180" ry="22" fill="#000" opacity="0.25"/>
+
+  <!-- Arms -->
+  <g filter="url(#soft)">
+    <rect x="360" y="320" width="480" height="18" rx="9" fill="url(#arm)"/>
+    <rect x="591" y="240" width="18" height="220" rx="9" fill="url(#arm)"/>
+  </g>
+
+  <!-- Rotors with motion blur -->
+  <g filter="url(#rotorBlur)" opacity="0.85">
+    <ellipse cx="360" cy="330" rx="70" ry="12" fill="#cfd8e3"/>
+    <ellipse cx="840" cy="330" rx="70" ry="12" fill="#cfd8e3"/>
+    <ellipse cx="600" cy="240" rx="12" ry="60" transform="rotate(90 600 240)" fill="#cfd8e3"/>
+    <ellipse cx="600" cy="460" rx="12" ry="60" transform="rotate(90 600 460)" fill="#cfd8e3"/>
+  </g>
+
+  <!-- Motor hubs -->
+  <g fill="#6f7c93" filter="url(#soft)">
+    <circle cx="360" cy="330" r="16"/>
+    <circle cx="840" cy="330" r="16"/>
+    <circle cx="600" cy="240" r="12"/>
+    <circle cx="600" cy="460" r="12"/>
+  </g>
+
+  <!-- Drone body -->
+  <g filter="url(#soft)">
+    <rect x="520" y="300" width="160" height="80" rx="18" fill="url(#body)"/>
+    <rect x="560" y="350" width="80" height="40" rx="10" fill="#1f2a3a"/>
+    <!-- Camera gimbal -->
+    <circle cx="600" cy="370" r="14" fill="#1b2736"/>
+    <circle cx="600" cy="370" r="10" fill="url(#lens)"/>
+    <rect x="594" y="382" width="12" height="12" rx="3" fill="#1b2736"/>
+  </g>
+
+  <!-- Accent reflections -->
+  <path d="M525 310c40 10 80 10 150 0" stroke="#e6eefc" stroke-opacity="0.35" fill="none"/>
+  <circle cx="640" cy="312" r="3" fill="#e6eefc" opacity="0.6"/>
+
+  <!-- Subtle stars/noise -->
+  <g fill="#e6eefc" opacity="0.25">
+    <circle cx="120" cy="120" r="1"/><circle cx="180" cy="160" r="1"/><circle cx="240" cy="100" r="1"/>
+    <circle cx="1040" cy="120" r="1"/><circle cx="980" cy="160" r="1"/><circle cx="920" cy="100" r="1"/>
+  </g>
+</svg>
+
