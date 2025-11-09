@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkySentinel — AI-Powered Drones. Faster Relief. Safer Response.</title>
+
+    <!-- SEO & Social -->
+    <meta name="description" content="SkySentinel provides AI-powered drones for disaster management. Faster relief, safer response. Mock educational demo site." />
+    <meta property="og:title" content="SkySentinel — AI-Powered Drones" />
+    <meta property="og:description" content="AI-powered drones for disaster management. Faster relief, safer response." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/logo.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SkySentinel — AI-Powered Drones" />
+    <meta name="twitter:description" content="AI-powered drones for disaster management." />
+
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Libraries (GSAP + ScrollTrigger, Lenis) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- App -->
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+      <nav class="nav" aria-label="Primary">
+        <a href="#home" class="logo">
+          <img src="assets/logo.svg" alt="SkySentinel logo" width="28" height="28" />
+          <span>SkySentinel</span>
+        </a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#tech">Tech</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="btn btn-small" href="#contact">Contact</a></li>
+        </ul>
+        <div id="mobile-menu" class="mobile-drawer" hidden>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#tech">Tech</a></li>
+            <li><a href="#use-cases">Use Cases</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a class="btn btn-small" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" class="site-main">
+      <!-- Hero -->
+      <section id="home" class="section hero" aria-labelledby="hero-title">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1 id="hero-title" class="headline">
+              AI-Powered Drones. Faster Relief. Safer Response.
+            </h1>
+            <p class="subcopy">
+              We combine edge AI, computer vision, and autonomous flight to cut response times and save lives.
+            </p>
+            <div class="actions">
+              <a class="btn" href="#contact">Get a Demo</a>
+              <a class="btn btn-ghost" href="assets/brochure.pdf" download aria-label="Download brochure PDF">Download Brochure (PDF)</a>
+            </div>
+            <ul class="kpi-chips" aria-label="Key performance indicators">
+              <li><span class="chip">&lt;5min deploy</span></li>
+              <li><span class="chip">98% detection accuracy</span></li>
+              <li><span class="chip">Secure-by-design</span></li>
+            </ul>
+          </div>
+          <div class="hero-art">
+            <img src="assets/illustration-drone.svg" alt="Stylized drone illustration" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem -> Solution -->
+      <section id="solutions" class="section two-col" aria-labelledby="probsol-title">
+        <div class="container">
+          <h2 id="probsol-title" class="section-title">From chaos to clarity</h2>
+          <div class="cols">
+            <article class="card glass fade-in" aria-labelledby="problems-title">
+              <h3 id="problems-title">Disaster pain points</h3>
+              <ul class="list">
+                <li>Blocked roads delay teams</li>
+                <li>Low visibility at night</li>
+                <li>Manual mapping is slow</li>
+                <li>Fragmented communication</li>
+              </ul>
+            </article>
+            <article class="card glass fade-in" aria-labelledby="solutions-title">
+              <h3 id="solutions-title">SkySentinel solutions</h3>
+              <ul class="list">
+                <li>Rapid aerial deploy in minutes</li>
+                <li>Thermal + low-light vision</li>
+                <li>Automated damage mapping</li>
+                <li>Secure command dashboard</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="section features" aria-labelledby="features-title">
+        <div class="container">
+          <h2 id="features-title" class="section-title">AI capabilities</h2>
+          <div class="grid features-grid">
+            <article class="card feature fade-in">
+              <img src="assets/icons/mapping.svg" alt="Mapping icon" class="icon" />
+              <h3>Real-time Damage Mapping</h3>
+              <ul>
+                <li>Auto-stitches aerial mosaics</li>
+                <li>Change detection overlays</li>
+                <li>Export to GIS</li>
+              </ul>
+            </article>
+            <article class="card feature fade-in">
+              <img src="assets/icons/thermal.svg" alt="Thermal icon" class="icon" />
+              <h3>Thermal Search &amp; Rescue</h3>
+              <ul>
+                <li>Human/animal heat signatures</li>
+                <li>Night-safe navigation</li>
+                <li>Priority alerting</li>
+              </ul>
+            </article>
+            <article class="card feature fade-in">
+              <img src="assets/icons/swarm.svg" alt="Swarm icon" class="icon" />
+              <h3>Swarm Coordination</h3>
+              <ul>
+                <li>Multi-drone coverage</li>
+                <li>Collision-aware paths</li>
+                <li>Live area partitioning</li>
+              </ul>
+            </article>
+            <article class="card feature fade-in">
+              <img src="assets/icons/edge.svg" alt="Edge AI icon" class="icon" />
+              <h3>Edge AI Onboard Inference</h3>
+              <ul>
+                <li>Low latency detection</li>
+                <li>Works offline</li>
+                <li>Optimized models</li>
+              </ul>
+            </article>
+            <article class="card feature fade-in">
+              <img src="assets/icons/gas.svg" alt="Gas detection icon" class="icon" />
+              <h3>Hazard &amp; Gas Detection</h3>
+              <ul>
+                <li>Multi-sensor fusion</li>
+                <li>Threshold alerts</li>
+                <li>Incident tagging</li>
+              </ul>
+            </article>
+            <article class="card feature fade-in">
+              <img src="assets/icons/medical.svg" alt="Medical icon" class="icon" />
+              <h3>Autonomous Medical Delivery</h3>
+              <ul>
+                <li>Critical payload drops</li>
+                <li>Route + ETA tracking</li>
+                <li>Secure parcels</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech / How it works -->
+      <section id="tech" class="section tech" aria-labelledby="tech-title">
+        <div class="container">
+          <h2 id="tech-title" class="section-title">How it works</h2>
+          <ol class="flow">
+            <li><span class="step">1</span> Deploy</li>
+            <li><span class="step">2</span> Scan &amp; Detect</li>
+            <li><span class="step">3</span> Analyze (Edge + Cloud)</li>
+            <li><span class="step">4</span> Coordinate Response</li>
+          </ol>
+          <div class="architecture card glass" aria-label="Architecture diagram">
+            <!-- Inline SVG diagram -->
+            <svg viewBox="0 0 740 200" role="img" aria-labelledby="archTitle archDesc">
+              <title id="archTitle">SkySentinel Architecture</title>
+              <desc id="archDesc">Drone sensors connect to edge AI, uplink securely to command center dashboard, and coordinate relief teams.</desc>
+              <defs>
+                <linearGradient id="grad" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#7c5cff"/>
+                  <stop offset="100%" stop-color="#22e3ff"/>
+                </linearGradient>
+              </defs>
+              <g fill="#0f1a2b" stroke="url(#grad)" stroke-width="2">
+                <rect x="10" y="40" rx="10" ry="10" width="140" height="120"/>
+                <rect x="180" y="40" rx="10" ry="10" width="140" height="120"/>
+                <rect x="350" y="40" rx="10" ry="10" width="160" height="120"/>
+                <rect x="540" y="40" rx="10" ry="10" width="180" height="120"/>
+              </g>
+              <g fill="#e6eefc" font-family="Inter, system-ui, sans-serif" font-size="14" text-anchor="middle">
+                <text x="80" y="100">Drone</text>
+                <text x="80" y="120">(Sensors)</text>
+                <text x="250" y="100">Edge AI</text>
+                <text x="430" y="100">Secure Uplink</text>
+                <text x="630" y="95">Command Center</text>
+                <text x="630" y="115">Dashboard</text>
+                <text x="630" y="135">→ Relief Teams</text>
+              </g>
+              <g stroke="url(#grad)" stroke-width="3" stroke-linecap="round">
+                <line x1="150" y1="100" x2="180" y2="100" />
+                <line x1="320" y1="100" x2="350" y2="100" />
+                <line x1="510" y1="100" x2="540" y2="100" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Use-Case Tabs -->
+      <section id="use-cases" class="section tabs" aria-labelledby="tabs-title">
+        <div class="container">
+          <h2 id="tabs-title" class="section-title">Use cases</h2>
+          <div class="tablist" role="tablist" aria-label="Disaster scenarios">
+            <button role="tab" aria-selected="true" aria-controls="panel-earthquakes" id="tab-earthquakes" class="tab">Earthquakes</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-floods" id="tab-floods" class="tab">Floods</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-wildfires" id="tab-wildfires" class="tab">Wildfires</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-cyclones" id="tab-cyclones" class="tab">Cyclones</button>
+          </div>
+          <div class="tab-panels">
+            <div role="tabpanel" id="panel-earthquakes" aria-labelledby="tab-earthquakes" class="panel is-active">
+              <img src="assets/illustration-earthquakes.svg" alt="Earthquake response illustration" />
+              <ul>
+                <li>Assess collapsed structures</li>
+                <li>Thermal scan for survivors</li>
+                <li>Deliver first-aid kits</li>
+              </ul>
+            </div>
+            <div role="tabpanel" id="panel-floods" aria-labelledby="tab-floods" class="panel">
+              <img src="assets/illustration-floods.svg" alt="Flood response illustration" />
+              <ul>
+                <li>Map inundated areas</li>
+                <li>Drop life vests</li>
+                <li>Monitor levee integrity</li>
+              </ul>
+            </div>
+            <div role="tabpanel" id="panel-wildfires" aria-labelledby="tab-wildfires" class="panel">
+              <img src="assets/illustration-wildfires.svg" alt="Wildfire response illustration" />
+              <ul>
+                <li>Thermal edge hotspots</li>
+                <li>Wind-aware pathing</li>
+                <li>Asset protection watch</li>
+              </ul>
+            </div>
+            <div role="tabpanel" id="panel-cyclones" aria-labelledby="tab-cyclones" class="panel">
+              <img src="assets/illustration-cyclones.svg" alt="Cyclone response illustration" />
+              <ul>
+                <li>Damage and debris mapping</li>
+                <li>Cell coverage relay</li>
+                <li>Water/food drop</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Impact / Stats -->
+      <section id="impact" class="section impact" aria-labelledby="impact-title">
+        <div class="container">
+          <h2 id="impact-title" class="section-title">Measured impact</h2>
+          <div class="grid stats">
+            <div class="card stat">
+              <span class="label">Coverage Area (km²)</span>
+              <span class="num" data-target="3500">0</span>
+            </div>
+            <div class="card stat">
+              <span class="label">Victims Located</span>
+              <span class="num" data-target="1200">0</span>
+            </div>
+            <div class="card stat">
+              <span class="label">Missions Run</span>
+              <span class="num" data-target="540">0</span>
+            </div>
+            <div class="card stat">
+              <span class="label">Avg. Response Time (min)</span>
+              <span class="num" data-target="8">0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Before / After Gallery -->
+      <section class="section gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <h2 id="gallery-title" class="section-title">Before / After</h2>
+          <div class="compare card glass">
+            <img src="assets/before.svg" alt="Area before disaster" class="before" />
+            <img src="assets/after.svg" alt="Area after disaster" class="after" />
+            <input aria-label="Before after slider" class="slider" type="range" min="0" max="100" value="50" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section id="pricing" class="section pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <div class="pricing-header">
+            <h2 id="pricing-title" class="section-title">Pricing</h2>
+            <div class="toggle">
+              <span>Monthly</span>
+              <label class="switch">
+                <input id="priceToggle" type="checkbox" aria-label="Toggle billing annually" />
+                <span class="slider-switch" aria-hidden="true"></span>
+              </label>
+              <span>Annual</span>
+            </div>
+          </div>
+          <div class="grid pricing-grid">
+            <article class="card price">
+              <h3>Starter</h3>
+              <p class="price-amount"><span class="currency">$</span><span class="value" data-month="299" data-year="249">299</span><span class="period">/mo</span></p>
+              <ul class="list">
+                <li>Single drone</li>
+                <li>Basic dashboard</li>
+                <li>Email support</li>
+              </ul>
+              <button class="btn btn-block">Choose Starter</button>
+            </article>
+            <article class="card price featured">
+              <h3>Response</h3>
+              <p class="price-amount"><span class="currency">$</span><span class="value" data-month="799" data-year="679">799</span><span class="period">/mo</span></p>
+              <ul class="list">
+                <li>3–5 drones</li>
+                <li>Thermal + mapping</li>
+                <li>Priority support</li>
+              </ul>
+              <button class="btn btn-block">Choose Response</button>
+            </article>
+            <article class="card price">
+              <h3>Enterprise</h3>
+              <p class="price-amount"><span class="currency">$</span><span class="value" data-month="1999" data-year="1699">1999</span><span class="period">/mo</span></p>
+              <ul class="list">
+                <li>Fleet + swarms</li>
+                <li>Edge + cloud AI</li>
+                <li>24/7 hotline</li>
+              </ul>
+              <button class="btn btn-block">Contact Sales</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section faq" aria-labelledby="faq-title">
+        <div class="container">
+          <h2 id="faq-title" class="section-title">FAQ</h2>
+          <div class="accordion" role="region" aria-labelledby="faq-title">
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq1" id="faq1-label">Is SkySentinel deployed today?</button>
+              </h3>
+              <div id="faq1" class="acc-panel" role="region" aria-labelledby="faq1-label" hidden>
+                <p>This is a mock educational demo site. It shows how AI drones could support disaster response in the near term.</p>
+              </div>
+            </div>
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq2" id="faq2-label">How do you handle data privacy?</button>
+              </h3>
+              <div id="faq2" class="acc-panel" role="region" aria-labelledby="faq2-label" hidden>
+                <p>Edge-first design keeps sensitive processing on the drone. Uplinks use encryption and role-based access.</p>
+              </div>
+            </div>
+            <div class="item">
+              <h3>
+                <button class="acc-btn" aria-expanded="false" aria-controls="faq3" id="faq3-label">Can it work offline?</button>
+              </h3>
+              <div id="faq3" class="acc-panel" role="region" aria-labelledby="faq3-label" hidden>
+                <p>Yes. Onboard inference supports detection and mapping without a network. Sync resumes when a link is available.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <div class="container">
+          <h2 id="contact-title" class="section-title">Contact</h2>
+          <form id="leadForm" novalidate class="card glass">
+            <div class="grid form-grid">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" required autocomplete="name" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" name="email" required autocomplete="email" />
+              </label>
+              <label>
+                <span>Organization</span>
+                <input type="text" name="org" autocomplete="organization" />
+              </label>
+              <label>
+                <span>Use case</span>
+                <select name="usecase" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Earthquakes</option>
+                  <option>Floods</option>
+                  <option>Wildfires</option>
+                  <option>Cyclones</option>
+                </select>
+              </label>
+              <label class="full">
+                <span>Message</span>
+                <textarea name="message" rows="4" required></textarea>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit">Send</button>
+              <p id="formStatus" role="status" aria-live="polite" class="form-status" hidden>Message sent. We will reach out soon.</p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="brand">
+          <img src="assets/logo.svg" alt="SkySentinel logo" width="24" height="24" />
+          <span>SkySentinel</span>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#home">Back to top</a></li>
+        </ul>
+        <p class="disclaimer">Mock demo site for educational purposes. No real service is offered.</p>
+        <div class="social" aria-label="Social links">
+          <a href="#" aria-label="LinkedIn"><img src="assets/icons/social-linkedin.svg" alt="" aria-hidden="true" /></a>
+          <a href="#" aria-label="Twitter"><img src="assets/icons/social-twitter.svg" alt="" aria-hidden="true" /></a>
+          <a href="#" aria-label="GitHub"><img src="assets/icons/social-github.svg" alt="" aria-hidden="true" /></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+  </html>

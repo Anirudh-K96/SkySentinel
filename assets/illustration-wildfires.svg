@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-label="Wildfires illustration placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#0b1220"/>
+  <g stroke="url(#g)" fill="none" stroke-width="2">
+    <path d="M40 240h480"/>
+    <path d="M100 240c10-40 30-40 40 0 10-40 30-40 40 0 10-40 30-40 40 0 10-40 30-40 40 0 10-40 30-40 40 0 10-40 30-40 40 0 10-40 30-40 40 0"/>
+    <circle cx="420" cy="80" r="24"/>
+    <path d="M420 104v30"/>
+  </g>
+</svg>
+

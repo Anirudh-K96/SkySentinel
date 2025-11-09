@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="After disaster placeholder image">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#0b1220"/>
+  <g stroke="url(#g)" fill="none">
+    <polyline points="40,320 90,300 140,330 190,300 240,330 290,300 340,330 390,300 440,330 490,300 540,330 590,300 640,330 690,300 740,320"/>
+    <g opacity="0.85">
+      <path d="M90 270l30 40M120 270l-30 40"/>
+      <path d="M180 260l30 50M210 260l-30 50"/>
+      <path d="M320 250l40 60M360 250l-40 60"/>
+      <path d="M480 260l30 50M510 260l-30 50"/>
+      <path d="M650 270l30 40M680 270l-30 40"/>
+    </g>
+  </g>
+</svg>
+

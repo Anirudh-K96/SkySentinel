@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" role="img" aria-label="Swarm icon">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient></defs>
+  <g fill="none" stroke="url(#g)" stroke-width="1.8" stroke-linecap="round">
+    <circle cx="6" cy="6" r="3"/>
+    <circle cx="18" cy="6" r="3"/>
+    <circle cx="12" cy="18" r="3"/>
+    <path d="M8 8l3 7M16 8l-3 7"/>
+  </g>
+</svg>
+

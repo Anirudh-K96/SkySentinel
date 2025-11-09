@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-label="Cyclones illustration placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#0b1220"/>
+  <g fill="none" stroke="url(#g)">
+    <path d="M280 150c70 0 120-20 120-60C360 120 260 60 260 20 220 60 160 90 160 120c0 40 50 60 120 60z"/>
+    <circle cx="280" cy="150" r="12"/>
+  </g>
+</svg>
+

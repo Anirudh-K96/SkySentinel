@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" role="img" aria-label="Thermal icon">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#7c5cff"/><stop offset="100%" stop-color="#22e3ff"/></linearGradient></defs>
+  <g fill="none" stroke="url(#g)" stroke-width="1.8">
+    <path d="M8 14a4 4 0 108 0 4 4 0 10-8 0z"/>
+    <path d="M12 2v4M4 12H2m20 0h-2M5.6 5.6L4.2 4.2m14.2 1.4l1.4-1.4"/>
+  </g>
+  <circle cx="12" cy="14" r="2" fill="#e6eefc"/>
+</svg>
+
