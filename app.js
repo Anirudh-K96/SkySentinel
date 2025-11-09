@@ -1,8 +1,27 @@
 // StratoRelief Demo App
 // All interactions are client-side and offline-friendly.
 
-// Respect reduced motion
+// Respect reduced motion and detect mobile to tune animations
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+// Single scroll dispatcher to minimize multiple scroll listeners
+const __scrollUpdates = [];
+let __scrollScheduled = false;
+function addScrollUpdate(fn) {
+  if (typeof fn === 'function') __scrollUpdates.push(fn);
+  if (!addScrollUpdate._installed) {
+    window.addEventListener('scroll', () => {
+      if (__scrollScheduled) return;
+      __scrollScheduled = true;
+      requestAnimationFrame(() => {
+        __scrollScheduled = false;
+        for (const cb of __scrollUpdates) cb();
+      });
+    }, { passive: true });
+    addScrollUpdate._installed = true;
+  }
+}
 
 function initLenis() {
   // Disabled to preserve CSS scroll-snap behavior in presentation mode
@@ -51,14 +70,14 @@ function initScrollAnims() {
   gsap.registerPlugin(ScrollTrigger);
   // Fade-in cards
   document.querySelectorAll('.fade-in, .feature, .stat').forEach((el) => {
-    gsap.fromTo(el, { opacity: 0, y: 14 }, {
-      opacity: 1, y: 0, duration: 0.45,
+    gsap.fromTo(el, { opacity: 0, y: 12 }, {
+      opacity: 1, y: 0, duration: isMobile ? 0.32 : 0.45,
       scrollTrigger: { trigger: el, start: 'top 80%' }
     });
   });
   // Parallax subtle on hero art
   const art = document.querySelector('.hero-art img');
-  if (art) {
+  if (art && !isMobile) {
     // Keep very subtle to avoid heavy parallax
     gsap.to(art, { yPercent: 3, ease: 'none', scrollTrigger: { trigger: '.hero', scrub: 0.2 } });
   }
@@ -76,7 +95,7 @@ function initCounters() {
         if (started) return; started = true;
         gsap.fromTo(el, { innerText: 0 }, {
           innerText: target,
-          duration: Math.min(2, 0.001 * target + 0.8),
+          duration: Math.min(1.6, 0.001 * target + (isMobile ? 0.6 : 0.8)),
           ease: 'power1.out',
           snap: { innerText: 1 },
           onUpdate: () => { el.textContent = Math.floor(el.innerText).toLocaleString(); }
@@ -189,7 +208,7 @@ function initNextPrev() {
     if (prev) prev.toggleAttribute('disabled', idx === 0);
     if (next) next.toggleAttribute('disabled', idx >= total - 1);
   };
-  window.addEventListener('scroll', toggleDisabled, { passive: true });
+  addScrollUpdate(toggleDisabled);
   window.addEventListener('resize', toggleDisabled);
   toggleDisabled();
 }
@@ -223,7 +242,7 @@ function initSlideCounter() {
     const current = getCurrentSlideIndex() + 1;
     el.textContent = `${current} / ${total}`;
   };
-  window.addEventListener('scroll', update, { passive: true });
+  addScrollUpdate(update);
   window.addEventListener('resize', update);
   update();
 }
@@ -236,7 +255,7 @@ function initProgressBar() {
     const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
     bar.style.width = Math.max(0, Math.min(1, scrolled)) * 100 + '%';
   }
-  document.addEventListener('scroll', update, { passive: true });
+  addScrollUpdate(update);
   update();
 }
 
@@ -253,7 +272,7 @@ function initBackToTop() {
     btn.setAttribute('aria-hidden', String(atTop));
   };
   btn.addEventListener('click', () => scrollToSectionByIndex(0));
-  window.addEventListener('scroll', update, { passive: true });
+  addScrollUpdate(update);
   window.addEventListener('resize', update);
   if (main) main.addEventListener('scroll', update, { passive: true });
   update();
